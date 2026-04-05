@@ -26,6 +26,9 @@ private:
     Lista<T> lista;
 };
 
+template <typename T>
+std::ostream& operator<<(std::ostream& salida, const ListaOrdenada<T>& listaOrd);
+
 #include "ListaOrdenada.tpp"
 
 #endif // LISTAORDENADA_HPP_INCLUDED

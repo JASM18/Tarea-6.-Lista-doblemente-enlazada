@@ -1,13 +1,20 @@
 #include <iostream>
 
+#include  "CapturaSegura.hpp"
 #include "ListaOrdenada.hpp"
 
 using namespace std;
 
 enum Opciones_principales {
-    MODIFICARLISTA = 1,     ///< Opci&oacute;n para ir al men&uacute; de modificaci&oacute;n.
-    CONOCER,                ///< Opci&oacute;n para ir al men&uacute; para conocer datos de la lista.
-    OPERATOR,               ///< Opci&oacute;n para probar la sobrecarga del operador de corchetes.
+    AGREGAR = 1,
+    ELIMINAR,
+    BUSCAR,
+    VACIAR,
+    ESTAVACIA,
+    TAMANO,
+    IMPRIMIR,
+    IMPRIMIRINVERSA,
+    MEZCLAR,
     SALIR                   ///< Opci&oacute;n para salir del programa.
 };
 
@@ -15,6 +22,7 @@ int main()
 {
     int opcion = -1;
     ListaOrdenada<int> lista;
+    int valor;
 
     do{
         cout << "==================================" << endl;
@@ -24,31 +32,74 @@ int main()
         cout << "Lista: " << lista << endl << endl;
 
         cout << "Opciones:" << endl;
-        cout << "\t" << MODIFICARLISTA << ") Modificar una lista. (Agregar, eliminar, modificar, transferir, vaciar)" << endl;
-        cout << "\t" << CONOCER << ") Conocer datos de la lista (Buscar, obtener, imprimir)" << endl;
-        cout << "\t" << OPERATOR << ") Probar la sobrecarga operator[]" << endl;
+        cout << "\t" << AGREGAR << ") Agregar un elemento." << endl;
+        cout << "\t" << ELIMINAR << ") Eliminar un elemento." << endl;
+        cout << "\t" << BUSCAR << ") Buscar un elemento." << endl;
+        cout << "\t" << VACIAR << ") Vaciar la lista." << endl;
+        cout << "\t" << ESTAVACIA << ") Conocer si la lista est\240 vac\241a." << endl;
+        cout << "\t" << TAMANO << ") Conocer el tamaño de la lista." << endl;
+        cout << "\t" << IMPRIMIR << ") Imprimir la lista en forma ascendente." << endl;
+        cout << "\t" << IMPRIMIRINVERSA << ") Imprimir la lista en forma descendente." << endl;
+        cout << "\t" << MEZCLAR << ") Mezclar dos listas." << endl;
         cout << "\t" << SALIR << ") Salir del programa." << endl;
 
         do{
             CapturarNumero(opcion, "Elige una opci\242n: ");
-        }while(opcion > SALIR || opcion < MODIFICARLISTA);
+        }while(opcion > SALIR || opcion < AGREGAR);
 
         if(opcion == SALIR) continue;
 
         try{
             switch(opcion){
 
-                case MODIFICARLISTA :
-                    MenuDefinirLista(lista);
-                    break;
+                case AGREGAR:
+                    CapturarNumero(valor, "Valor a agregar: ");
+                    lista.Agregar(valor);
+                    cout << "El elemento " << valor << " se agregado exitosamente." << endl;
+                break;
 
-                case CONOCER :
-                    MenuConocer(lista);
-                    break;
+                case ELIMINAR:
+                    CapturarNumero(valor, "Valor a eliminar: ");
+                    if (lista.Eliminar(valor)) {
+                        cout << "El elemento " << valor << " fue eliminado correctamente." << endl;
+                    } else {
+                        cout << "El elemento " << valor << " no se encontro en la lista." << endl;
+                    }
+                break;
 
-                case OPERATOR:
-                    MenuOperator(lista);
-                    break;
+                case BUSCAR:
+                    CapturarNumero(valor, "Valor a buscar: ");
+                    cout << "El elemento " << valor << " esta en la lista: " << (lista.BuscarElem(valor) ? "True" : "False") << endl;
+                break;
+
+                case VACIAR:
+                    lista.Vaciar();
+                    cout << "La lista se ha vaciado exitosamente." << endl;
+                break;
+
+                case ESTAVACIA:
+                    cout << "La lista esta vacia: " << (lista.EstaVacia() ? "True" : "False") << endl;
+                break;
+
+                case TAMANO:
+                    cout << "El tamaño de la lista es de: " << lista.ObtenerTam() << endl;
+                break;
+
+                case IMPRIMIR:
+                    cout << "Lista en forma ascendente:" << endl;
+                    lista.Imprimir();
+                    cout << endl;
+                break;
+
+                case IMPRIMIRINVERSA:
+                    cout << "Lista en forma descendente:" << endl;
+                    lista.ImprimirReversa();
+                    cout << endl;
+                break;
+
+                case MEZCLAR:
+                    cout << "PENDIENTE" << endl;
+                break;
             }
         }catch(const char* mensaje){
             cerr << "Error: " << mensaje << endl;

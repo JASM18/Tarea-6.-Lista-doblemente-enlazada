@@ -103,3 +103,12 @@ ListaOrdenada<T> ListaOrdenada<T>::Mezclar(ListaOrdenada<T> otraLista)
 
     return listaNueva;
 }
+
+//***********************************
+
+template <typename T>
+std::ostream& operator<<(std::ostream& salida, const ListaOrdenada<T>& listaOrd)
+{
+    listaOrd.Imprimir();
+    return salida;
+}
