@@ -3,18 +3,25 @@
 
 #include "ListaDoble.hpp"
 
+template <typename T>
 class ListaOrdenada {
 public:
-    ListaOrdenada();
+//
+//    ListaOrdenada(const ListaOrdenada& other);
 
-    ~ListaOrdenada();
+//    ListaOrdenada& operator=(const ListaOrdenada& other);
 
-    ListaOrdenada(const ListaOrdenada& other);
-
-    ListaOrdenada& operator=(const ListaOrdenada& other);
+    void Agregar(T valor);
+    bool BuscarElem(T valor);
+    void Vaciar();
+    bool EstaVacia();
+    int ObtenerTam();
+    void ImprimirAsc();
+    void ImprimirDesc();
+    void Mezclar();
 
 private:
-
+    Lista<T> lista;
 };
 
 #include "ListaOrdenada.tpp"
