@@ -12,13 +12,13 @@ public:
 //    ListaOrdenada& operator=(const ListaOrdenada& other);
 
     void Agregar(T valor);
-    bool BuscarElem(T valor);
+    bool BuscarElem(T valor) const;
     void Vaciar();
-    bool EstaVacia();
-    int ObtenerTam();
-    void ImprimirAsc();
-    void ImprimirDesc();
-    void Mezclar();
+    bool EstaVacia() const;
+    int ObtenerTam() const;
+    void ImprimirAsc() const;
+    void ImprimirDesc() const;
+    ListaOrdenada<T> Mezclar(ListaOrdenada<T> lista2);
 
 private:
     Lista<T> lista;
