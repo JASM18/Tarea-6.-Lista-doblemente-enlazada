@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #include  "CapturaSegura.hpp"
 #include "ListaOrdenada.hpp"
@@ -23,6 +25,8 @@ int main()
     int opcion = -1;
     ListaOrdenada<int> lista;
     int valor;
+
+    srand(time(NULL));
 
     do{
         cout << "==================================" << endl;
@@ -53,12 +57,14 @@ int main()
             switch(opcion){
 
                 case AGREGAR:
+                    cout << "- - - - -" << endl;
                     CapturarNumero(valor, "Valor a agregar: ");
                     lista.Agregar(valor);
                     cout << "El elemento " << valor << " se agregado exitosamente." << endl;
                 break;
 
                 case ELIMINAR:
+                    cout << "- - - - -" << endl;
                     CapturarNumero(valor, "Valor a eliminar: ");
                     if (lista.Eliminar(valor)) {
                         cout << "El elemento " << valor << " fue eliminado correctamente." << endl;
@@ -68,39 +74,63 @@ int main()
                 break;
 
                 case BUSCAR:
+                    cout << "- - - - -" << endl;
                     CapturarNumero(valor, "Valor a buscar: ");
                     cout << "El elemento " << valor << " esta en la lista: " << (lista.BuscarElem(valor) ? "True" : "False") << endl;
                 break;
 
                 case VACIAR:
+                    cout << "- - - - -" << endl;
                     lista.Vaciar();
                     cout << "La lista se ha vaciado exitosamente." << endl;
                 break;
 
                 case ESTAVACIA:
+                    cout << "- - - - -" << endl;
                     cout << "La lista esta vacia: " << (lista.EstaVacia() ? "True" : "False") << endl;
                 break;
 
                 case TAMANO:
+                    cout << "- - - - -" << endl;
                     cout << "El tamaño de la lista es de: " << lista.ObtenerTam() << endl;
                 break;
 
                 case IMPRIMIR:
+                    cout << "- - - - -" << endl;
                     cout << "Lista en forma ascendente:" << endl;
                     lista.Imprimir();
                     cout << endl;
                 break;
 
                 case IMPRIMIRINVERSA:
+                    cout << "- - - - -" << endl;
                     cout << "Lista en forma descendente:" << endl;
                     lista.ImprimirReversa();
                     cout << endl;
                 break;
 
-                case MEZCLAR:
-                    cout << "PENDIENTE" << endl;
-                break;
+                case MEZCLAR: {
+                    ListaOrdenada<int> lista2;
+
+                    cout << "- - - - -" << endl;
+                    cout << "-> Se va a crear otra lista con 10 elementos aleatorios del -10 al 10" << endl;
+
+                    // Ciclo para llenar la segunda lista
+                    for(int i = 0; i < 10; i++){
+                        lista2.Agregar(rand() % 21 - 10);
+                    }
+
+                    // Imprimimos el antes
+                    cout << "\nLista 1: " << lista << endl;
+                    cout << "Lista 2: " << lista2 << endl;
+
+                    ListaOrdenada<int> listaMezclada = lista.Mezclar(lista2);
+
+                    cout << "Lista mezclada: " <<listaMezclada << endl;
+                    break;
+                }
             }
+
         }catch(const char* mensaje){
             cerr << "Error: " << mensaje << endl;
         }catch(const exception &error){
@@ -109,6 +139,7 @@ int main()
             cerr << "El programa tuvo un error inesperado." << endl;
         }
 
+        cout << endl;
         system ("pause");
         system("CLS");
     }while(opcion != SALIR);

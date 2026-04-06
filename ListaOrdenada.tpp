@@ -99,7 +99,32 @@ ListaOrdenada<T> ListaOrdenada<T>::Mezclar(ListaOrdenada<T> otraLista)
 {
     ListaOrdenada<T> listaNueva;
 
-    // AQUÍ HAZ TODO EL COCHINERO
+    int tam1 = this->ObtenerTam();
+    int tam2 = otraLista.ObtenerTam();
+    int i = 0; // indice que recorre la lista del objeto al que se le esta aplicando el método
+    int j = 0; // Índice para otraLista
+
+    while(i < tam1 && j < tam2){
+        if (this->lista[i] <= otraLista.lista[j]) {
+            listaNueva.lista.AgregarFinal(this->lista[i]);
+            i++;
+        }else{
+            listaNueva.lista.AgregarFinal(otraLista.lista[j]);
+            j++;
+        }
+    }
+
+    // Si sobraron elementos en el ojeto *this, los metemos
+    while(i < tam1){
+        listaNueva.lista.AgregarFinal(this->lista[i]);
+        i++;
+    }
+
+    // Si sobraron elementos en otraLista, los metemos
+    while(j < tam2){
+        listaNueva.lista.AgregarFinal(otraLista.lista[j]);
+        j++;
+    }
 
     return listaNueva;
 }
