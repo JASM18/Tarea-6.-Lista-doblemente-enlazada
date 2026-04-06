@@ -3,7 +3,7 @@
  * \brief Este archivo contiene la implementaci&oacute;n de los m&eacute;todos de la plantilla ListaOrdenada.
  * \author S&aacute;nchez Montoy, Jes&uacute;s Axel
  * \author Portugal Arreola, Marian Bethsab&eacute;
- * \date 02/04/2026
+ * \date 05/04/2026
  */
 
 //***********************************
